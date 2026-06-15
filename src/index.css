@@ -404,71 +404,7 @@ a:hover {
   transform: scale(0.96);
 }
 
-/* Horizontally draggable slideshow section */
-.l-slideshow {
-  background-color: var(--bg-gray-light);
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
 
-.l-slideshow__wrapper {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  cursor: grab;
-  user-select: none;
-  width: 100%;
-}
-
-.l-slideshow__wrapper::-webkit-scrollbar {
-  display: none;
-}
-
-.l-slideshow__wrapper:active {
-  cursor: grabbing;
-}
-
-.l-slideshow__slides {
-  display: flex;
-  width: max-content;
-  padding-left: var(--padding-x-base);
-  padding-right: var(--padding-x-base);
-  gap: 2rem;
-}
-
-.l-slideshow__slide {
-  flex-shrink: 0;
-  width: 75vw;
-  max-width: 500px;
-}
-
-@media (min-width: 45em) {
-  .l-slideshow__slide {
-    width: 35vw;
-    max-width: 600px;
-  }
-}
-
-.c-image {
-  width: 100%;
-  height: auto;
-}
-
-.c-image__wrapper {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  aspect-ratio: 3 / 2;
-  background-color: #eee;
-}
-
-.c-image__wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
 
 /* Split content image and text layout */
 .l-text-image-layout {
@@ -597,3 +533,631 @@ a:hover {
   background-color: #d8d8d8;
   color: #000;
 }
+
+/* ==========================================================================
+   Comic Book Album Selector (Amy Lombard / Pop Art / Neobrutalism Inspired)
+   ========================================================================== */
+
+.c-album-selector-section {
+  background-color: var(--bg-white);
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+}
+
+.c-album-selector-header {
+  margin-bottom: 3.5rem;
+}
+
+.c-album-selector__title {
+  display: inline-block;
+  background-color: #000;
+  color: #fff;
+  padding: 0.65rem 1.75rem;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 2.75rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transform: rotate(-1.5deg);
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0px #FFE600;
+  margin-bottom: 1.5rem;
+}
+
+.c-album-selector__subtitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #444;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c-album-selector {
+  display: flex;
+  width: 100%;
+  height: 65vh;
+  min-height: 500px;
+  max-height: 750px;
+  border: 4px solid #000;
+  overflow: hidden;
+  background-color: #000;
+  gap: 4px;
+  box-shadow: 12px 12px 0px #000;
+}
+
+.c-album-panel {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.45s cubic-bezier(0.25, 1, 0.33, 1);
+}
+
+.c-album-panel.is-hovered {
+  flex: 2.3;
+}
+
+.c-album-panel__image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.c-album-panel__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.15) brightness(0.75);
+  transition: filter 0.45s ease, transform 0.6s cubic-bezier(0.25, 1, 0.33, 1);
+}
+
+.c-album-panel.is-hovered .c-album-panel__image {
+  filter: grayscale(0%) contrast(1) brightness(1);
+  transform: scale(1.04);
+}
+
+.c-album-panel__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+}
+
+.c-album-panel.is-hovered .c-album-panel__overlay {
+  opacity: 0.5;
+}
+
+/* Metadata tag at the top of each panel */
+.c-album-panel__header {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background-color: #000;
+  color: #fff;
+  border: 3px solid #000;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.33, 1), background-color 0.3s ease, color 0.3s ease;
+}
+
+.c-album-panel.is-hovered .c-album-panel__header {
+  transform: translateX(-50%) translateY(-3px);
+  background-color: var(--theme-color);
+  color: #000;
+  box-shadow: 4px 4px 0px #000;
+}
+
+/* Comic Book Badge / Speech Bubble */
+.c-album-panel__badge-container {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  width: 85%;
+  max-width: 290px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 20px) scale(0.92);
+  transition: opacity 0.35s cubic-bezier(0.25, 1, 0.33, 1), transform 0.35s cubic-bezier(0.25, 1, 0.33, 1);
+}
+
+.c-album-panel.is-hovered .c-album-panel__badge-container {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
+}
+
+.c-album-panel__badge {
+  background-color: var(--theme-color);
+  border: 4px solid #000;
+  padding: 0.9rem 1.2rem;
+  position: relative;
+  box-shadow: 8px 8px 0px #000;
+  text-align: center;
+}
+
+.c-album-panel__badge::before {
+  content: "";
+  position: absolute;
+  bottom: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 13px 13px 0;
+  border-style: solid;
+  border-color: #000 transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+}
+
+.c-album-panel__badge::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px 8px 0;
+  border-style: solid;
+  border-color: var(--theme-color) transparent;
+  display: block;
+  width: 0;
+  z-index: 2;
+}
+
+
+.c-album-panel__badge-title {
+  color: #000;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin: 0;
+  line-height: 1.15;
+}
+
+/* Responsive Styles for Tablet & Mobile */
+@media (max-width: 48em) {
+  .c-album-selector {
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+    gap: 4px;
+    box-shadow: 8px 8px 0px #000;
+  }
+
+  .c-album-panel {
+    flex: none;
+    width: 100%;
+    height: 170px;
+    transition: height 0.4s cubic-bezier(0.25, 1, 0.33, 1);
+  }
+
+  .c-album-panel.is-hovered {
+    height: 250px;
+  }
+
+  .c-album-panel__header {
+    top: 1rem;
+    left: 1.5rem;
+    transform: none;
+  }
+
+  .c-album-panel.is-hovered .c-album-panel__header {
+    transform: translateY(-2px);
+  }
+
+  .c-album-panel__badge-container {
+    bottom: 1.5rem;
+  }
+}
+
+
+/* ==========================================================================
+   Text Scroller Animation (Framer Motion Easing)
+   ========================================================================== */
+
+.c-canvas-text-scroller {
+  display: inline-block;
+  height: 16vw;
+  line-height: 16vw;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.scroller-word {
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 16vw;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   Split-Screen Album Page (Street Photography / Comic Book Grid Layout)
+   ========================================================================== */
+
+.l-album-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-white);
+  width: 100%;
+}
+
+@media (min-width: 58em) {
+  .l-album-page {
+    flex-direction: row;
+  }
+}
+
+/* LEFT COLUMN: Pinned Album metadata and city filters */
+.l-album-page__left {
+  width: 100%;
+  border-bottom: 4px solid #000;
+  padding: 2rem 1.5rem;
+  background-color: var(--bg-gray-light);
+  box-sizing: border-box;
+}
+
+@media (min-width: 58em) {
+  .l-album-page__left {
+    width: 30%;
+    min-width: 330px;
+    max-width: 400px;
+    border-bottom: none;
+    border-right: 4px solid #000;
+    padding: 2.5rem 2rem;
+  }
+}
+
+.l-album-page__sticky-content {
+  position: relative;
+}
+
+@media (min-width: 58em) {
+  .l-album-page__sticky-content {
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  
+  .l-album-page__sticky-content::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Back navigation button */
+.c-album-back-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-family);
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  color: #000;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.c-album-back-btn:hover {
+  color: var(--accent-blue);
+}
+
+/* Title block in black box with bright shadow */
+.c-album-cover__title-box {
+  background-color: #000;
+  color: #fff;
+  border: 4px solid #000;
+  padding: 0.85rem 1.25rem;
+  box-shadow: 6px 6px 0px #FF3399; /* Hot Pink flat shadow */
+  margin-bottom: 1.75rem;
+}
+
+.c-album-cover__tag {
+  display: inline-block;
+  background-color: #FFE600; /* Neon yellow tag */
+  color: #000;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 0.15rem 0.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  margin-bottom: 0.35rem;
+}
+
+.c-album-cover__title {
+  font-family: Impact, Haettenschweiler, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+/* Cover Image Art */
+.c-album-cover__art {
+  margin: 0 0 1.5rem 0;
+}
+
+.c-album-cover__art-wrapper {
+  border: 4px solid #000;
+  box-shadow: 6px 6px 0px #000;
+  overflow: hidden;
+  aspect-ratio: 3/2;
+  background-color: #eee;
+}
+
+.c-album-cover__art-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.c-album-cover__caption {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #666;
+  text-transform: uppercase;
+  margin-top: 0.65rem;
+  letter-spacing: 0.06em;
+}
+
+/* Album Description text */
+.c-album-cover__desc p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+  font-weight: 600;
+}
+
+.c-album-cover__desc p + p {
+  margin-top: 0.85rem;
+}
+
+/* Filter buttons container */
+.c-album-filters {
+  border-top: 4px solid #000;
+  padding-top: 1.75rem;
+  margin-top: 2rem;
+}
+
+.c-album-filters__title {
+  font-family: Impact, Haettenschweiler, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1.15rem;
+  letter-spacing: 0.03em;
+}
+
+.c-album-filters__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Comic-styled flat shadow buttons */
+.c-filter-btn {
+  background-color: #fff;
+  color: #000;
+  border: 3px solid #000;
+  padding: 0.45rem 1.15rem;
+  font-family: Impact, Haettenschweiler, sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 4px 4px 0px #000;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+.c-filter-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #000;
+}
+
+.c-filter-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 3px 3px 0px #000;
+}
+
+.c-filter-btn.is-active {
+  background-color: #FFE600; /* Active bright yellow fill */
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px #000;
+}
+
+/* RIGHT COLUMN: Photo Masonry Grid */
+.l-album-page__right {
+  width: 100%;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+@media (min-width: 58em) {
+  .l-album-page__right {
+    flex: 1;
+    padding: 3rem 2.5rem;
+    overflow-y: auto;
+  }
+}
+
+.c-album-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+@media (min-width: 48em) {
+  .c-album-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 220px;
+    grid-auto-flow: dense;
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 75em) {
+  .c-album-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 240px;
+  }
+}
+
+/* Card item wrap */
+.c-album-thumb {
+  width: 100%;
+}
+
+.c-album-thumb__card {
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.c-album-thumb__image-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background-color: #eee;
+}
+
+/* Default aspect ratios for mobile stacking */
+.c-album-thumb.grid-size--tall .c-album-thumb__image-wrapper {
+  aspect-ratio: 2/3;
+}
+
+.c-album-thumb.grid-size--wide .c-album-thumb__image-wrapper {
+  aspect-ratio: 3/2;
+}
+
+.c-album-thumb.grid-size--square .c-album-thumb__image-wrapper {
+  aspect-ratio: 1/1;
+}
+
+/* Grid cell sizing on tablet & desktop */
+@media (min-width: 48em) {
+  .c-album-thumb {
+    height: 100%;
+  }
+
+  .c-album-thumb__card {
+    height: 100%;
+  }
+
+  .c-album-thumb__image-wrapper {
+    height: 100%;
+  }
+
+  /* Override aspect ratios to let grid cells determine sizing */
+  .c-album-thumb.grid-size--tall .c-album-thumb__image-wrapper,
+  .c-album-thumb.grid-size--wide .c-album-thumb__image-wrapper,
+  .c-album-thumb.grid-size--square .c-album-thumb__image-wrapper {
+    aspect-ratio: auto;
+  }
+
+  .grid-size--tall {
+    grid-row: span 2;
+    grid-column: span 1;
+  }
+
+  .grid-size--wide {
+    grid-row: span 1;
+    grid-column: span 2;
+  }
+
+  .grid-size--square {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+}
+
+.c-album-thumb__image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.c-album-thumb__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.c-album-thumb:hover .c-album-thumb__overlay {
+  opacity: 1;
+}
+
+.c-album-thumb__hover-title {
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.25;
+  max-width: 70%;
+  word-break: break-word;
+}
+
+.c-album-thumb__hover-year {
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin: 0;
+  line-height: 1.25;
+  flex-shrink: 0;
+}
+
+
+

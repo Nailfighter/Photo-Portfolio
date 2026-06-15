@@ -1,10 +1,26 @@
-import React from "react";
-import LandingCanvas from "./components/LandingCanvas";
+import React, { useState } from "react";
+import Home from "./pages/Home/Home";
+import Album from "./pages/Album/Album";
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+  const [currentCategory, setCurrentCategory] = useState("street");
+
+  const handleNavigate = (page, category = "street") => {
+    setCurrentPage(page);
+    setCurrentCategory(category);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <main id="content">
-      <LandingCanvas />
-    </main>
+    <>
+      <main id="content">
+        {currentPage === "home" ? (
+          <Home onNavigate={handleNavigate} />
+        ) : (
+          <Album category={currentCategory} onNavigate={handleNavigate} />
+        )}
+      </main>
+    </>
   );
 }

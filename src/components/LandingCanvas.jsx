@@ -1,11 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { canvasImages } from "../data/assets";
 
 export default function LandingCanvas() {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const headingRef = useRef(null);
-  
+
+  const words = ["ISO", "APERTURE", "SHUTTER"];
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % words.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
   // Animation states
   const animationStateRef = useRef({
     width: 0,
@@ -254,12 +265,35 @@ export default function LandingCanvas() {
       <h1 
         ref={headingRef}
         className="l-canvas__hyperreal js-canvas-hl"
-        aria-label="Analog"
+        aria-label="ISO Aperture Shutter"
         style={{
           transform: `translate(var(--text-x), var(--text-y))`,
+          position: "relative",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <span>Analog</span>
+        <div style={{ height: "16vw", overflow: "hidden", position: "relative", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+          <AnimatePresence mode="popLayout">
+            <motion.span
+              key={words[wordIndex]}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                display: "block",
+                position: "absolute",
+                width: "100%",
+                textAlign: "center",
+                lineHeight: "16vw",
+              }}
+            >
+              {words[wordIndex]}
+            </motion.span>
+          </AnimatePresence>
+        </div>
       </h1>
       <canvas ref={canvasRef} />
     </div>
