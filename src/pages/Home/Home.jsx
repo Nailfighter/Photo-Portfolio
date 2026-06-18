@@ -1,4 +1,3 @@
-import React from "react";
 import LandingCanvas from "../../components/LandingCanvas";
 import AlbumSelector from "./AlbumSelector";
 

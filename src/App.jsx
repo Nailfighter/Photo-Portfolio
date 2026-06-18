@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Home from "./pages/Home/Home";
 import Album from "./pages/Album/Album";
 
@@ -18,7 +18,7 @@ export default function App() {
         {currentPage === "home" ? (
           <Home onNavigate={handleNavigate} />
         ) : (
-          <Album category={currentCategory} onNavigate={handleNavigate} />
+          <Album key={currentCategory} category={currentCategory} onNavigate={handleNavigate} />
         )}
       </main>
     </>

@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { canvasImages } from "../data/assets";
+
+const words = ["ISO", "APERTURE", "SHUTTER"];
 
 export default function LandingCanvas() {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const headingRef = useRef(null);
 
-  const words = ["ISO", "APERTURE", "SHUTTER"];
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export default function LandingCanvas() {
 
     // Load images
     let loadedCount = 0;
-    const loadedImages = canvasImages.map((imgData, index) => {
+    const loadedImages = canvasImages.map((imgData) => {
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.src = imgData.url;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { albumCategories } from "../../data/assets";
 
 export default function AlbumSelector({ onNavigate }) {
@@ -34,12 +34,7 @@ export default function AlbumSelector({ onNavigate }) {
                 />
               </div>
               <div className="c-album-panel__overlay" />
-              <div className="c-album-panel__header">{category.subtitle}</div>
-              <div className="c-album-panel__badge-container">
-                <div className="c-album-panel__badge">
-                  <h3 className="c-album-panel__badge-title">{category.title}</h3>
-                </div>
-              </div>
+              <div className="c-album-panel__header">{category.title}</div>
             </div>
           );
         })}
