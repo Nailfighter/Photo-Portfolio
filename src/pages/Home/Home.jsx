@@ -1,12 +1,12 @@
 import LandingCanvas from "./LandingCanvas";
-import SurfacePromo from "./SurfacePromo";
+import AboutMe from "./AboutMe";
 import AlbumSelector from "./AlbumSelector";
 
 export default function Home({ onNavigate }) {
   return (
     <div className="home-page">
       <LandingCanvas />
-      <SurfacePromo />
+      <AboutMe />
       <AlbumSelector onNavigate={onNavigate} />
     </div>
   );
