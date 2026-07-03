@@ -100,6 +100,7 @@ export const albumCategories = [
     title: "Cityscape",
     subtitle: "CITYSCAPE 101",
     imageUrl: "/Album Cover/Cityscape Cover.jpg",
+    bgUrl: "/Album Cover/Cityscape BG.jpg",
     color: "#00B0FF",
     description: "Towering skyscrapers, neon-drenched avenues, and the architectural pulse of the world's greatest metropolises."
   },
@@ -108,6 +109,7 @@ export const albumCategories = [
     title: "Events",
     subtitle: "EVENTS 102",
     imageUrl: "/Album Cover/Event Cover.jpg",
+    bgUrl: "/Album Cover/Event BG.jpg",
     color: "#FF1A1A",
     description: "Capturing the energy, emotion, and motion of live concerts, cultural festivals, and high-octane sports."
   },
@@ -116,6 +118,7 @@ export const albumCategories = [
     title: "Nature",
     subtitle: "NATURE 103",
     imageUrl: "/Album Cover/Nature Cover.jpg",
+    bgUrl: "/Album Cover/Nature BG.jpg",
     color: "#00E676",
     description: "Serene landscapes, misty mountain ranges, and quiet woodland paths showcasing the natural world."
   },
@@ -124,6 +127,7 @@ export const albumCategories = [
     title: "Street",
     subtitle: "STREET 104",
     imageUrl: "/Album Cover/Street Cover.jpg",
+    bgUrl: "/Album Cover/Street BG.jpg",
     color: "#FFE600",
     description: "Candid moments, graphic shadows, and the raw poetry of everyday life captured in the urban environment."
   },
@@ -132,6 +136,7 @@ export const albumCategories = [
     title: "Wildlife",
     subtitle: "WILDLIFE 105",
     imageUrl: "/Album Cover/Wildlife Cover.jpg",
+    bgUrl: "/Album Cover/Wildlife BG.jpg",
     color: "#FF3399",
     description: "Intimate portraits of animals in their natural habitats, from apex predators to delicate avian species."
   }

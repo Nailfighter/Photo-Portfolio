@@ -6,11 +6,8 @@ export default function AlbumSelector({ onNavigate }) {
 
   return (
     <section className="c-album-selector-section px-base pt-8 pb-8">
-      <div className="c-album-selector-header text--center">
-        <h2 className="c-album-selector__title">Browse Portfolios</h2>
-        <p className="c-album-selector__subtitle">
-          Select a collection to explore galleries of premium photography.
-        </p>
+      <div className="c-album-selector-header">
+        <h2 className="c-album-selector__title">Albums</h2>
       </div>
 
       <div className="c-album-selector">

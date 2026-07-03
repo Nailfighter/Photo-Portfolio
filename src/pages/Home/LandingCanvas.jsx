@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { canvasImages } from "../data/assets";
+import { canvasImages } from "../../data/assets";
 
 const words = ["ISO", "APERTURE", "SHUTTER"];
 
