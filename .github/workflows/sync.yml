@@ -1,0 +1,20 @@
+name: Sync to Org Fork
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to Organization Fork
+        run: |
+          git remote add org-fork https://${{ secrets.SYNC_TOKEN }}@github.com/Personal-Homeserver/Photo-Portfolio.git
+          git push org-fork main --force
