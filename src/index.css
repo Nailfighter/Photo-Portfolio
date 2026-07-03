@@ -812,7 +812,7 @@ a:hover {
 .l-album-hero {
   position: relative;
   width: 100%;
-  min-height: 50vh;
+  min-height: 30vh;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -820,7 +820,7 @@ a:hover {
 
 @media (min-width: 58em) {
   .l-album-hero {
-    min-height: 60vh;
+    min-height: 40vh;
   }
 }
 
